@@ -41,7 +41,14 @@ def actions(board):
     """
     Returns set of all possible actions (i, j) available on the board.
     """
-    raise NotImplementedError
+    actions_set = set()
+    
+    for i in range(3):
+        for j in range(3):
+            if board[i][j] == EMPTY:
+                actions_set.add((i,j))
+    return actions_set
+    # raise NotImplementedError
 
 
 def result(board, action):
@@ -55,7 +62,6 @@ def winner(board):
     """
     Returns the winner of the game, if there is one.
     """
-
     # horizontally, vertically
     for i in range(3):
         if board[i][0] == board[i][1] == board[i][2]:
@@ -80,7 +86,7 @@ def terminal(board):
     """
     for i in range(3):
         for j in range(3):
-            if board[i][j] != Empty:
+            if board[i][j] != EMPTY:
                 pass
             else:
                 return False
