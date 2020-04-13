@@ -56,6 +56,21 @@ def winner(board):
     Returns the winner of the game, if there is one.
     """
 
+    # horizontally, vertically
+    for i in range(3):
+        if board[i][0] == board[i][1] == board[i][2]:
+            return winner
+        elif board[0][i] == board[1][i] == board[2][i]:
+            return winner
+
+    # diagonally
+    if board[0][0] == board[1][1] == board[2][2]:
+        return board[0][0]
+    elif board[0][2] == board[1][1] == board[2][0]:
+        return board[0][2]
+    else:
+        return None
+
     # raise NotImplementedError
 
 
@@ -77,7 +92,7 @@ def utility(board):
     """
     Returns 1 if X has won the game, -1 if O has won, 0 otherwise.
     """
-    raise NotImplementedError
+    # raise NotImplementedError
 
 
 def minimax(board):
