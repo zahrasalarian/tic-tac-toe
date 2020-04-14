@@ -34,7 +34,6 @@ def player(board):
         return O
     else:
         return X
-    # raise NotImplementedError
 
 
 def actions(board):
@@ -48,7 +47,6 @@ def actions(board):
             if board[i][j] == EMPTY:
                 actions_set.add((i,j))
     return actions_set
-    # raise NotImplementedError
 
 
 def result(board, action):
@@ -64,7 +62,6 @@ def result(board, action):
     board_copy[action[0]][action[1]] = game_player
 
     return board_copy
-    # raise NotImplementedError
 
 
 def winner(board):
@@ -86,7 +83,6 @@ def winner(board):
     else:
         return None
 
-    # raise NotImplementedError
 
 
 def terminal(board):
@@ -103,7 +99,6 @@ def terminal(board):
             else:
                 return False
     return True
-    # raise NotImplementedError
 
 
 def utility(board):
@@ -116,7 +111,6 @@ def utility(board):
         return (-1)
     else:
         return 0
-    # raise NotImplementedError
 
 
 def minimax(board):
@@ -137,7 +131,6 @@ def minimax(board):
             if el[1] > max:
                 max = el[1]
                 ans = el[0]
-        print("max = {}".format(max))
         return ans
 
     if player(board) == O:
@@ -150,15 +143,12 @@ def minimax(board):
 
         min = o_list[0][1]
         ans = o_list[0][0]
-        print(o_list)
         for el in o_list:
             if el[1] < min:
                 min = el[1]
                 ans = el[0]
 
-        print("min = {}".format(min))
         return ans
-    # raise NotImplementedError
 
 def min_value(board):
 
