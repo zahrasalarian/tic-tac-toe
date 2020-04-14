@@ -2,7 +2,7 @@
 Tic Tac Toe Player
 """
 
-import math,copy
+import math,copy,math
 
 X = "X"
 O = "O"
@@ -55,13 +55,13 @@ def result(board, action):
     """
     Returns the board that results from making move (i, j) on the board.
     """
-    player = player(board)
+    game_player = player(board)
 
     # making a copy of the board
     board_copy = copy.deepcopy(board)
 
     action = list(action)
-    board_copy[action[0]][action[1]] = player
+    board_copy[action[0]][action[1]] = game_player
 
     return board_copy
     # raise NotImplementedError
@@ -120,4 +120,55 @@ def minimax(board):
     """
     Returns the optimal action for the current player on the board.
     """
-    raise NotImplementedError
+    if player(board) == X:
+        x_list = []
+        for action in actions(board):
+            temp = [action]
+            result_board = result(board,action)
+            temp.append(max_value(result_board))
+            x_list.append(temp)
+
+        max = x_list[0][1]
+        ans = x_list[0][0]
+        for el in x_list:
+            if el[1] > max:
+                max = el[1]
+                ans = el[0]
+        return ans
+
+    if player(board) == O:
+        o_list = []
+        for action in actions(board):
+            temp = [action]
+            result_board = result(board,action)
+            temp.append(max_value(result_board))
+            o_list.append(temp)
+
+        min = o_list[0][1]
+        ans = o_list[0][0]
+        for el in o_list:
+            if el[1] < min:
+                min = el[1]
+                ans = el[0]
+        return ans
+    # raise NotImplementedError
+
+def min_value(board):
+
+    if terminal(board):
+        return utility(board)
+
+    v = math.inf
+    for action in actions(board):
+        v = min(v,max_value(result(board,action)))
+    return v
+
+def max_value(board):
+
+    if terminal(board):
+        return utility(board)
+
+    v = -math.inf
+    for action in actions(board):
+        v = max(v,min_value(result(board,action)))
+    return v
